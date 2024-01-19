@@ -9,5 +9,6 @@
 #define INC_HANGULSTRINGTABLE_H_
 
 const char hello[] = {"æ»≥Á«œººø‰"};
+const char string2[] = {"¥Î«—πŒ±π"};
 
 #endif /* INC_HANGULSTRINGTABLE_H_ */

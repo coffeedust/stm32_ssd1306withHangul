@@ -159,7 +159,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   ssd1306_SetCursor(0, 0);
   ssd1306_WriteString("hello world", Font_6x8, 1);
-  outtextxy_hans(0, 1, hello);
+  outtextxy_hans(0, 0, hello);
+  outtextxy_hans(0, 1, string2);
   ssd1306_UpdateScreen();
   ssd1306_ScrollLeft(0, 7);
   while(1);

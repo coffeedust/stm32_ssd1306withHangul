@@ -82,49 +82,8 @@ void outhan(uint8_t colum, uint8_t row, unsigned char hanx1, unsigned char hanx2
 
 	image = gethanimage(hanx1, hanx2);
 	
-	memcpy(&SSD1306_Buffer[(colum*16)], image, 16);
-	memcpy(&SSD1306_Buffer[(colum*16)+128], &image[16], 16);
-    //row *= 16;
-    /*for(int i = 0; i < 8; i++) {
-    	SSD1306_Buffer[colum + ((row+i)*16)] =   (shiftBit(image[0], 7 - i) & 0x80) |
-                                                (shiftBit(image[1], 6 - i) & 0x40) |
-                                                (shiftBit(image[2], 5 - i) & 0x20) |
-                                                (shiftBit(image[3], 4 - i) & 0x10) |
-                                                (shiftBit(image[4], 3 - i) & 0x08) |
-                                                (shiftBit(image[5], 2 - i) & 0x04) |
-                                                (shiftBit(image[6], 1 - i) & 0x02) |
-                                                (shiftBit(image[7], 0 - i) & 0x01);
-    }
-    for(int i = 0; i < 8; i++) {
-    	SSD1306_Buffer[colum+1 + ((row+i)*16)] = (shiftBit(image[8], 7 - i) & 0x80) |
-                                                (shiftBit(image[9], 6 - i) & 0x40) |
-                                                (shiftBit(image[10], 5 - i) & 0x20) |
-                                                (shiftBit(image[11], 4 - i) & 0x10) |
-                                                (shiftBit(image[12], 3 - i) & 0x08) |
-                                                (shiftBit(image[13], 2 - i) & 0x04) |
-                                                (shiftBit(image[14], 1 - i) & 0x02) |
-                                                (shiftBit(image[15], 0 - i) & 0x01);
-    }
-    for(int i = 0; i < 8; i++) {
-    	SSD1306_Buffer[colum + ((row+i+8)*16)] = (shiftBit(image[16], 7 - i) & 0x80) |
-                                                (shiftBit(image[17], 6 - i) & 0x40) |
-                                                (shiftBit(image[18], 5 - i) & 0x20) |
-                                                (shiftBit(image[19], 4 - i) & 0x10) |
-                                                (shiftBit(image[20], 3 - i) & 0x08) |
-                                                (shiftBit(image[21], 2 - i) & 0x04) |
-                                                (shiftBit(image[22], 1 - i) & 0x02) |
-                                                (shiftBit(image[23], 0 - i) & 0x01);
-    }
-    for(int i = 0; i < 8; i++) {
-    	SSD1306_Buffer[colum+1 + ((row+i+8)*16)] =   (shiftBit(image[24], 7 - i) & 0x80) |
-                                                    (shiftBit(image[25], 6 - i) & 0x40) |
-                                                    (shiftBit(image[26], 5 - i) & 0x20) |
-                                                    (shiftBit(image[27], 4 - i) & 0x10) |
-                                                    (shiftBit(image[28], 3 - i) & 0x08) |
-                                                    (shiftBit(image[29], 2 - i) & 0x04) |
-                                                    (shiftBit(image[30], 1 - i) & 0x02) |
-                                                    (shiftBit(image[31], 0 - i) & 0x01);
-    }//*/
+	memcpy(&SSD1306_Buffer[(colum*16)+(row*256)], image, 16);
+	memcpy(&SSD1306_Buffer[(colum*16)+128+(row*256)], &image[16], 16);
 }
 
 void outtextxy_engs(uint8_t colum, uint8_t row, char *engbuf) {
@@ -139,7 +98,7 @@ void outtextxy_hans(uint8_t colum, uint8_t row, char *hanbuf) {
 	while(hanbuf[i]) {
 		if(hanbuf[i] & 0x80) {
 			outhan(colum, row, hanbuf[i], hanbuf[i+1]);
-            colum++;
+      colum++;
 			i+=2;
 		}
 		else {  
